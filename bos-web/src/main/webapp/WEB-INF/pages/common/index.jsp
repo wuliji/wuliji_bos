@@ -85,7 +85,30 @@
 		});
 		
 		$("#btnEp").click(function(){
-			alert("修改密码");
+			//进行表单校验
+			var v = $("#editPasswordForm").form("validate");
+			if(v){
+				//表单校验通过,手动检验两次输入是否一致
+				var v1 = $("#txtNewPass").val();
+				var v2 = $("#txtRePass").val();
+				alert(v1);
+				if(v1 == v2){
+					//两次输入一致，发送ajax请求
+					$.post("${pageContext.request.contextPath}/userAction_editPassword.action",{"password":v1},function(data){
+						if(data == '1'){
+							//修改成功，关闭窗口
+							$("#editPwdWindow").window("close");
+						}else{
+							//修改失败，提示
+							$.messager.alert("提示信息","密码修改失败","error");
+						}
+					});
+				}else{
+					//两次输入不一致,弹出错误提示
+					$.messager.alert("提示信息","两次输入密码不一致","warning");
+				}
+				
+			}
 		});
 	});
 
@@ -148,6 +171,7 @@
 	}
 	// 修改密码
 	function editPassword() {
+		//打开修改密码窗口
 		$('#editPwdWindow').window('open');
 	}
 	// 版权信息
@@ -228,16 +252,18 @@
         background: #fafafa">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-                <table cellpadding=3>
-                    <tr>
-                        <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
-                    </tr>
-                    <tr>
-                        <td>确认密码：</td>
-                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
-                    </tr>
-                </table>
+                <form id="editPasswordForm"> 
+                	<table cellpadding=3>
+	                    <tr>
+	                        <td>新密码：</td>
+	                        <td><input required="required" data-options="validType:'length[4,6]'" id="txtNewPass" type="Password" class="txt01 easyui-validatebox" /></td>
+	                    </tr>
+	                    <tr>
+	                        <td>确认密码：</td>
+	                        <td><input required="required" data-options="validType:'length[4,6]'" id="txtRePass" type="Password" class="txt01" /></td>
+	                    </tr>
+                	</table>
+                </form>
             </div>
             <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
                 <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >确定</a> 

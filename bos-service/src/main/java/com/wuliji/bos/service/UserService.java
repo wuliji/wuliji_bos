@@ -10,5 +10,12 @@ public interface UserService {
 	 * @return
 	 */
 	User login(User model);
+	
+	/**
+	 * ĞŞ¸ÄÃÜÂë
+	 * @param id
+	 * @param password
+	 */
+	void editPassWord(String id, String password);
 
 }

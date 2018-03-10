@@ -4,34 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>layout</title>
+<title>menu-button</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"></script>
 
-<script type="text/javascript">
-	$(function(){
-		//提示框
-		//$.messager.alert("标题","内容","question");
-		
-		//confirm方法--确认框
-		/* $.messager.confirm("提示信息","你确定要删除当前记录吗？",function(r){
-			alert(r);
-		}); */
-		
-		//show方法 欢迎方法
-		$.messager.show({
-			title:"欢迎信息",
-			msg:"欢迎wuliji",
-			timeout:5000,
-			showType:"slide"
-		});
-	});
-	
-
-</script>
 </head>
-
+<body>
+	<!-- 制作菜单 -->
+	<a data-options="iconCls:'icon-help',menu:'#mm'" class="easyui-menubutton">控制面板</a>
+	
+	<!-- 使用div制作下拉菜单 -->
+	<div id="mm">
+		<div data-options="iconCls:'icon-edit'">修改密码</div>
+		<div>练习管理员</div>
+		<dir class="menu-sep"></dir>
+		<div>退出系统</div>
+	</div>
+	
+</body>
 </html>

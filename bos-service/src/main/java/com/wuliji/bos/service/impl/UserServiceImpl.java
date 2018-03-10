@@ -22,5 +22,13 @@ public class UserServiceImpl implements UserService{
 		String password = MD5Utils.md5(user.getPassword());
 		return userDao.findUserByUsernameAndPassword(user.getUsername(), password);
 	}
+
+	@Override
+	public void editPassWord(String id, String password) {
+		//º”√‹
+		password = MD5Utils.md5(password);
+		userDao.executeUpdate("user.editpassword", password, id);
+		
+	}
 	
 }

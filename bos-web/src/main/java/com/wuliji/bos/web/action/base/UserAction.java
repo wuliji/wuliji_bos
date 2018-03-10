@@ -1,5 +1,7 @@
 package com.wuliji.bos.web.action.base;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.wuliji.bos.entity.User;
 import com.wuliji.bos.service.UserService;
+import com.wuliji.bos.utils.BOSUtils;
 
 @Controller
 @Scope("prototype")
@@ -52,5 +55,25 @@ public class UserAction extends BaseAction<User> {
 	public String logout() {
 		ServletActionContext.getRequest().getSession().removeAttribute("user");
 		return LOGIN;
+	}
+	
+	/**
+	 * 修改当前用户密码
+	 * @throws IOException 
+	 */
+	public String editPassword() throws IOException {
+		//标志位
+		String f = "1";
+		//获取当前登录用户
+		User loginUser = BOSUtils.getLoginUser();
+		try {
+			userService.editPassWord(loginUser.getId(), model.getPassword());
+		}catch(Exception e){
+			f = "0";
+			e.printStackTrace();
+		}
+		ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+		ServletActionContext.getResponse().getWriter().print(f);
+		return NONE;
 	}
 }
