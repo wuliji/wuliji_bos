@@ -1,4 +1,4 @@
-package com.wuliji.bos.web.action.base;
+package com.wuliji.bos.web.action;
 
 import java.io.IOException;
 
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import com.wuliji.bos.entity.User;
 import com.wuliji.bos.service.UserService;
 import com.wuliji.bos.utils.BOSUtils;
+import com.wuliji.bos.web.action.base.BaseAction;
 
 @Controller
 @Scope("prototype")

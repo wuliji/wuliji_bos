@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 
 	protected static final String HOME = "home";
+	protected static final String LIST = "list";
 	
 	//模型对象
 	protected T model;

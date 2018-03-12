@@ -55,5 +55,6 @@
 	<!-- 支持spring注解 -->
 	<context:annotation-config/>
 	
-	<tx:annotation-driven/>
+	<!-- 开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
