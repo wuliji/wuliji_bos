@@ -13,9 +13,13 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.wuliji.bos.dao.base.IBaseDao;
+import com.wuliji.bos.utils.PageBean;
 
 /**
  * 持久层通用实现类
@@ -80,5 +84,23 @@ public class IBaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>{
 		query.executeUpdate();
 	}
 
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		int currentPage = pageBean.getCurrentPage();
+		int pageSize = pageBean.getPageSize();
+		DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();
+		
+		//查询total---总数据量
+		detachedCriteria.setProjection(Projections.rowCount());//指定框架发送sql形式
+		List<Long> countList = (List<Long>) this.getHibernateTemplate().findByCriteria(detachedCriteria);
+		Long count = countList.get(0);
+		pageBean.setTotal(count.intValue());
+		//查询rows---当前页需要展示的数据集合
+		detachedCriteria.setProjection(null);
+		int first = (currentPage - 1) * pageSize;
+		int maxResults = pageSize;
+		List rows = this.getHibernateTemplate().findByCriteria(detachedCriteria, first, maxResults);
+		pageBean.setRows(rows);
+	}
 	
 }

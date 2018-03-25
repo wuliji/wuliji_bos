@@ -121,15 +121,14 @@
 		
 		// 取派员信息表格
 		$('#grid').datagrid( {
-			iconCls : 'icon-forward',
 			fit : true,
-			border : false,
+			border : true,
 			rownumbers : true,
-			striped : true,
+			striped : false,
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/staff.json",
+			url : "staffAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow

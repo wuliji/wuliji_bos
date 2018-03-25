@@ -6,6 +6,8 @@ package com.wuliji.bos.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import com.wuliji.bos.utils.PageBean;
+
 /**
  * 持久层通用接口
  * @author Administrator
@@ -24,6 +26,8 @@ public interface IBaseDao<T> {
 	public List<T> findAll();
 	
 	public void executeUpdate(String queryName, Object ... objects);
+	
+	public void pageQuery(PageBean pageBean);
 	
 	
 }
