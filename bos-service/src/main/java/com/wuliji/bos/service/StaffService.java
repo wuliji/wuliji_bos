@@ -16,5 +16,23 @@ public interface StaffService {
 	 * @param pageBean
 	 */
 	public void pageQuery(PageBean pageBean);
+
+	/**
+	 * 批量删除取派员
+	 * @param ids
+	 */
+	public void deleteBatch(String ids);
+	
+	/**
+	 * 根据id查询
+	 * @param id
+	 */
+	public Staff findById(String id);
+	
+	/**
+	 * 更新取派员
+	 * @param staff
+	 */
+	public void update(Staff staff);
 	
 }

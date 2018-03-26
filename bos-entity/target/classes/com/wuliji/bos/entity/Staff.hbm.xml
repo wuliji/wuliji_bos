@@ -32,4 +32,8 @@
             <one-to-many class="com.wuliji.bos.entity.Decidedzone" />
         </set>
     </class>
+    <!-- 取派员逻辑删除 -->
+    <query name="staff.delete">
+    	UPDATE Staff set deltag = '1' where id = ?
+    </query>
 </hibernate-mapping>

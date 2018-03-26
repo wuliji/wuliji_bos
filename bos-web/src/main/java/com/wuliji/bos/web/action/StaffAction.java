@@ -82,4 +82,42 @@ public class StaffAction extends BaseAction<Staff>{
 		ServletActionContext.getResponse().getWriter().print(json);
 		return NONE;
 	}
+	
+	//属性驱动,删除ids的方法
+	private String ids;
+	
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	/**
+	 * 取派员批量删除
+	 * @return
+	 */
+	public String deleteBatch() {
+		staffService.deleteBatch(ids);
+		return LIST;
+	}
+	
+	/**
+	 * 修改取派员信息
+	 * @return
+	 */
+	public String edit() {
+		//查询数据库，取得原始数据
+		Staff staff = staffService.findById(model.getId());
+		staff.setTelephone(model.getTelephone());
+		staff.setHaspda(model.getHaspda());
+		staff.setName(model.getName());
+		staff.setStandard(model.getStandard());
+		staff.setDecidedzones(model.getDecidedzones());
+		staff.setStation(model.getStation());
+		//更新修改
+		staffService.update(staff);
+		return LIST;
+	}
 }
