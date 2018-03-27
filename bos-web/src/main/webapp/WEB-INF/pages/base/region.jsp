@@ -8,6 +8,8 @@
 <!-- 导入jquery核心类库 -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"></script>
 <!-- 导入easyui类库 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
@@ -114,6 +116,12 @@
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
+		});
+		
+		//页面加载完成后，调用OCUpload插件方法
+		$("#button-import").upload({
+			action:"regionAction_importXls",
+			name:"regionFile"
 		});
 		
 		// 添加、修改区域窗口

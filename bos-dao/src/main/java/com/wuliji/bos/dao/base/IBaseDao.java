@@ -21,6 +21,8 @@ public interface IBaseDao<T> {
 	
 	public void update(T entity);
 	
+	public void saveOrUpdate(T entity);
+	
 	public T findById(Serializable id);
 	
 	public List<T> findAll();
