@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wuliji.bos.dao.RegionDao;
 import com.wuliji.bos.entity.Region;
 import com.wuliji.bos.service.RegionService;
+import com.wuliji.bos.utils.PageBean;
 
 @Service
 @Transactional
@@ -22,6 +23,11 @@ public class RegionServiceImpl implements RegionService{
 		for (Region region : regionList) {
 			dao.saveOrUpdate(region);
 		}
+	}
+
+	@Override
+	public void pageQuery(PageBean pageBean) {
+		dao.pageQuery(pageBean);
 	}
 	
 }

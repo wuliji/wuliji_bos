@@ -11,14 +11,20 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.wuliji.bos.entity.Region;
 import com.wuliji.bos.service.RegionService;
+import com.wuliji.bos.utils.PageBean;
 import com.wuliji.bos.utils.PinYin4jUtils;
 import com.wuliji.bos.web.action.base.BaseAction;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 /**
  * 区域管理
@@ -85,6 +91,18 @@ public class RegionAction extends BaseAction<Region>{
 		}
 		//批量保存
 		regionService.saveBatch(regionList);
+		return NONE;
+	}
+	
+
+	/**
+	 * 分页查询
+	 * @return
+	 * @throws IOException 
+	 */
+	public String pageQuery() throws IOException {
+		regionService.pageQuery(pageBean);
+		this.javaToJson(pageBean, new String[] {"currentPage", "detachedCriteria", "pageSize"});
 		return NONE;
 	}
 }

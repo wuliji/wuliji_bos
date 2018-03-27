@@ -3,6 +3,7 @@ package com.wuliji.bos.service;
 import java.util.List;
 
 import com.wuliji.bos.entity.Region;
+import com.wuliji.bos.utils.PageBean;
 
 public interface RegionService {
 	
@@ -11,5 +12,11 @@ public interface RegionService {
 	 * @param regionList
 	 */
 	public void saveBatch(List<Region> regionList);
+
+	/**
+	 * ∑÷“≥≤È—Ø
+	 * @param pageBean
+	 */
+	public void pageQuery(PageBean pageBean);
 	
 }
