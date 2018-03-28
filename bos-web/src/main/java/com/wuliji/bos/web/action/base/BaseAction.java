@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -16,6 +17,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.wuliji.bos.entity.Staff;
 import com.wuliji.bos.utils.PageBean;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
@@ -57,6 +59,28 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		jsonConfig.setExcludes(excludes);
 		
 		String json = JSONObject.fromObject(o, jsonConfig).toString();
+		ServletActionContext.getResponse().setContentType("text/json;charset=utf-8");
+		try {
+			ServletActionContext.getResponse().getWriter().print(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 将Java转换为Json输出
+	 * @param o
+	 * @param excludes
+	 * @throws IOException
+	 */
+	public void javaToJson(List o, String[] excludes) {
+		//将PageBean对象转为JSON，通过输出流写回页面
+		//JSONObject将单一对象转为json
+		//JSONArray将数组或集合转为json
+		JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.setExcludes(excludes);
+		
+		String json = JSONArray.fromObject(o, jsonConfig).toString();
 		ServletActionContext.getResponse().setContentType("text/json;charset=utf-8");
 		try {
 			ServletActionContext.getResponse().getWriter().print(json);

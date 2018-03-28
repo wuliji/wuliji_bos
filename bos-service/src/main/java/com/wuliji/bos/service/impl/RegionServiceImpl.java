@@ -29,5 +29,17 @@ public class RegionServiceImpl implements RegionService{
 	public void pageQuery(PageBean pageBean) {
 		dao.pageQuery(pageBean);
 	}
+
+	@Override
+	public List<Region> findAll() {
+		List<Region> list = dao.findAll();
+		return list;
+	}
+
+	@Override
+	public List<Region> findListByQ(String q) {
+		
+		return dao.findListByQ(q);
+	}
 	
 }

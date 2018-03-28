@@ -19,7 +19,16 @@ public class Region implements java.io.Serializable {
 	private String shortcode;
 	private String citycode;
 	private Set subareas = new HashSet(0);
-
+	
+	/**
+	 * «¯”Úname≤È—Ø
+	 * @return
+	 */
+	public String getName() {
+		return province + " " +  city +  " " + district;
+	}
+	
+	
 	// Constructors
 
 	/** default constructor */

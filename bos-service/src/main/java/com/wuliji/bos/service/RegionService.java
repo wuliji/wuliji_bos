@@ -19,4 +19,17 @@ public interface RegionService {
 	 */
 	public void pageQuery(PageBean pageBean);
 	
+	/**
+	 * 查询所有方法
+	 * @return
+	 */
+	public List<Region> findAll();
+	
+	/**
+	 * 根据页面模糊查询
+	 * @param q
+	 * @return
+	 */
+	public List<Region> findListByQ(String q);
+	
 }

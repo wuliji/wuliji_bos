@@ -102,7 +102,34 @@ public class RegionAction extends BaseAction<Region>{
 	 */
 	public String pageQuery() throws IOException {
 		regionService.pageQuery(pageBean);
-		this.javaToJson(pageBean, new String[] {"currentPage", "detachedCriteria", "pageSize"});
+		this.javaToJson(pageBean, new String[] {"currentPage", "detachedCriteria", "pageSize","subareas"});
+		return NONE;
+	}
+	
+	//模糊查询驱动
+	private String q;
+	
+	
+	public String getQ() {
+		return q;
+	}
+
+	public void setQ(String q) {
+		this.q = q;
+	}
+
+	/**
+	 * 查询所有分区数据
+	 * @return
+	 */
+	public String listajax() {
+		List<Region> list = null;
+		if(!StringUtils.isBlank(q)) {
+			list = regionService.findListByQ(q);
+		}else {
+			list = regionService.findAll();
+		}
+		this.javaToJson(list, new String[] {"subareas"});
 		return NONE;
 	}
 }

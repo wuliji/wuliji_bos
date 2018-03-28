@@ -1,4 +1,4 @@
-package com.wuliji.bos.entity;
+		package com.wuliji.bos.entity;
 
 /**
  * 分区
@@ -10,7 +10,7 @@ public class Subarea implements java.io.Serializable {
 
 	private String id;
 	private Decidedzone decidedzone;
-	private Region region;
+	private Region region;//区域包含的分区
 	private String addresskey;
 	private String startnum;
 	private String endnum;
