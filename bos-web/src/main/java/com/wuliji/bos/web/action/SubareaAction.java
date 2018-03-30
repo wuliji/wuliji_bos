@@ -116,4 +116,14 @@ public class SubareaAction extends BaseAction<Subarea>{
 		workbook.write(outputStream);
 		return NONE;
 	}
+	
+	/**
+	 * 查询所有未关联的定区数据
+	 * @return
+	 */
+	public String listajax() {
+		List<Subarea> list = service.findListNotRelate();
+		this.javaToJson(list, new String[] {"decidedzone","region"});
+		return NONE;
+	}
 }

@@ -6,6 +6,8 @@ package com.wuliji.bos.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import com.wuliji.bos.utils.PageBean;
 
 /**
@@ -30,6 +32,8 @@ public interface IBaseDao<T> {
 	public void executeUpdate(String queryName, Object ... objects);
 	
 	public void pageQuery(PageBean pageBean);
+	
+	public List<T> findByCriteria(DetachedCriteria detachedCriteria);
 	
 	
 }

@@ -9,13 +9,17 @@ public class Subarea implements java.io.Serializable {
 	// Fields
 
 	private String id;
-	private Decidedzone decidedzone;
+	private Decidedzone decidedzone;//关联的定区
 	private Region region;//区域包含的分区
 	private String addresskey;
 	private String startnum;
 	private String endnum;
 	private String single;
 	private String position;
+	
+	public String getSubareaid() {
+		return id;
+	}
 
 	// Constructors
 
